@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Fullscreen Interface</title>
+	<link rel="stylesheet" href="/bundled/style.css">
+</head>
+
+<body>
+	<div id="main-ct" class="fi-ct">
+		<div class="fi-title">
+			<h1>My Fullscreen Interface</h1>
+			<div class="fi-header-actions">
+				<a class="back-icon" href="/">
+					<span>Back</span>
+				</a>
+			</div>
+		</div>
+		<form id="my-form" class="fi-inner-ct" action="post" action="/user/create">
+			<ol class="fi-field-list">
+				<li data-validation-id="fname">
+					<label data-info="Please input your Last Name">First Name</label>
+					<input type="text" id="fname" name="fname" />
+				</li>
+				<li>
+					<label data-info="Please input your Last Name">Last Name</label>
+					<input type="text" id="lname" name="lname" />
+				</li>
+			</ol>
+		</form>
+	</div>
+	<script src="/bundled/tinyrequire.min.js" data-main="/bundled/main.js"></script>
+</body>
+
+</html>

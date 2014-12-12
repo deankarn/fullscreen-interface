@@ -1,0 +1,32 @@
+// Base Colours
+@fi-color:#000;
+@fi-subtext-color: @fi-color;
+
+@fi-error-color:#eb7e7f;
+@fi-success-color:#0dc020;
+@fi-navdot-current: #ffc978;
+@fi-progress-color: @fi-navdot-current;
+@fi-focus-text: lighten(@fi-color, 20%);
+@fi-input-background:transparent;
+
+// Manipulated Base Colours
+@fi-color-alpha-10: fade(@fi-subtext-color, 10%);
+@fi-color-alpha-20: fade(@fi-subtext-color, 20%);
+@fi-color-alpha-30: fade(@fi-subtext-color, 30%);
+@fi-color-alpha-40: fade(@fi-subtext-color, 40%);
+@fi-color-alpha-50: fade(@fi-subtext-color, 50%);
+
+@fi-header-action-font-color: @fi-color-alpha-40;
+@fi-header-action-hover-font-color:@fi-color;
+
+@fi-subtext-border-color: lighten(@fi-color, 30%);
+
+@fi-hover-background: lighten(@fi-color, 15%);
+@fi-hover-text: lighten(@fi-hover-background, 100%);
+
+@fi-navdot-current-border: darken(@fi-navdot-current, 10%);
+
+@fi-focus-background: lighten(@fi-focus-text, 70%);
+
+// Base Values
+@fi-inner-ct-width: 80%;

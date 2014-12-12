@@ -1,0 +1,326 @@
+// Main Form Container
+
+// Animations to be split out into separate less file later
+.base-animation-construct (@arguments) {
+    -webkit-animation: @arguments;
+    -moz-animation: @arguments;
+    -ms-animation: @arguments;
+    -o-animation: @arguments;
+    animation: @arguments;
+}
+@-webkit-keyframes animFadeIn {
+    .fade-in-action;
+}
+@-moz-keyframes animFadeIn {
+    .fade-in-action;
+}
+@-ms-keyframes animFadeIn {
+    .fade-in-action;
+}
+@-o-keyframes animFadeIn {
+    .fade-in-action;
+}
+@keyframes animFadeIn {
+    .fade-in-action;
+}
+.fade-in-action () {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+
+}
+@-webkit-keyframes animMove {
+    .move-from-top-action;
+}
+@-moz-keyframes animMove {
+    .move-from-top-action;
+}
+@-ms-keyframes animMove {
+    .move-from-top-action;
+}
+@-o-keyframes animMove {
+    .move-from-top-action;
+}
+@keyframes animMove {
+    .move-from-top-action;
+}
+.move-from-top-action {
+    from {
+        top: 100px;
+
+    }
+    /* we need to use top here because otherwise all our fixed elements will become absolute */
+
+}
+@-webkit-keyframes animMoveUpFromDown {
+    .move-up-from-down;
+
+}
+@-moz-keyframes animMoveUpFromDown {
+    .move-up-from-down;
+
+}
+@-ms-keyframes animMoveUpFromDown {
+    .move-up-from-down;
+
+}
+@-o-keyframes animMoveUpFromDown {
+    .move-up-from-down;
+
+}
+@keyframes animMoveUpFromDown {
+    .move-up-from-down;
+
+}
+.move-up-from-down {
+    from {
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        -o-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+    to {
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+}
+@-webkit-keyframes animMoveUp {
+    .move-up;
+
+}
+@-moz-keyframes animMoveUp {
+    .move-up;
+
+}
+@-ms-keyframes animMoveUp {
+    .move-up;
+
+}
+@-o-keyframes animMoveUp {
+    .move-up;
+
+}
+@keyframes animMoveUp {
+    .move-up;
+
+}
+.move-up {
+    to {
+        -webkit-transform: translateY(-100%);
+        -moz-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        -o-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+}
+@-webkit-keyframes animMoveDownFromUp {
+    .move-down-from-up;
+
+}
+@-moz-keyframes animMoveDownFromUp {
+    .move-down-from-up;
+
+}
+@-ms-keyframes animMoveDownFromUp {
+    .move-down-from-up;
+
+}
+@-o-keyframes animMoveDownFromUp {
+    .move-down-from-up;
+
+}
+@keyframes animMoveDownFromUp {
+    .move-down-from-up;
+
+}
+.move-down-from-up {
+    from {
+        -webkit-transform: translateY(-100%);
+        -moz-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        -o-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+    to {
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        transform: translateY(0);
+    }
+
+}
+@-webkit-keyframes animMoveDown {
+    .move-down;
+
+}
+@-moz-keyframes animMoveDown {
+    .move-down;
+
+}
+@-ms-keyframes animMoveDown {
+    .move-down;
+
+}
+@-o-keyframes animMoveDown {
+    .move-down;
+
+}
+@keyframes animMoveDown {
+    .move-down;
+
+}
+.move-down {
+    to {
+        -webkit-transform: translateY(100%);
+        -moz-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        -o-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+
+}
+@-webkit-keyframes animHideNext {
+    .hide-next;
+}
+@-moz-keyframes animHideNext {
+    .hide-next;
+}
+@-ms-keyframes animHideNext {
+    .hide-next;
+}
+@-o-keyframes animHideNext {
+    .hide-next;
+}
+@keyframes animHideNext {
+    .hide-next;
+}
+.hide-next {
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0,-500px,0);
+        -moz-transform: translate3d(0,-500px,0);
+        -ms-transform: translate3d(0,-500px,0);
+        -o-transform: translate3d(0,-500px,0);
+        transform: translate3d(0,-500px,0);
+    }
+
+}
+@-webkit-keyframes animShowNext {
+    .show-next;
+
+}
+@-moz-keyframes animShowNext {
+    .show-next;
+
+}
+@-ms-keyframes animShowNext {
+    .show-next;
+
+}
+@-o-keyframes animShowNext {
+    .show-next;
+
+}
+@keyframes animShowNext {
+    .show-next;
+
+}
+.show-next {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0,90%,0);
+        -moz-transform: translate3d(0,90%,0);
+        -ms-transform: translate3d(0,90%,0);
+        -o-transform: translate3d(0,90%,0);
+        transform: translate3d(0,90%,0);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+
+}
+@-webkit-keyframes animHidePrev {
+    .hide-prev;
+
+}
+@-moz-keyframes animHidePrev {
+    .hide-prev;
+
+}
+@-ms-keyframes animHidePrev {
+    .hide-prev;
+
+}
+@-o-keyframes animHidePrev {
+    .hide-prev;
+
+}
+@keyframes animHidePrev {
+    .hide-prev;
+
+}
+.hide-prev {
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(0,90%,0);
+        -moz-transform: translate3d(0,90%,0);
+        -ms-transform: translate3d(0,90%,0);
+        -o-transform: translate3d(0,90%,0);
+        transform: translate3d(0,90%,0);
+    }
+
+}
+@-webkit-keyframes animShowPrev {
+    .show-prev;
+
+}
+@-moz-keyframes animShowPrev {
+    .show-prev;
+
+}
+@-ms-keyframes animShowPrev {
+    .show-prev;
+
+}
+@-o-keyframes animShowPrev {
+    .show-prev;
+
+}
+@keyframes animShowPrev {
+    .show-prev;
+
+}
+.show-prev {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(0,-500px,0);
+        -moz-transform: translate3d(0,-500px,0);
+        -ms-transform: translate3d(0,-500px,0);
+        -o-transform: translate3d(0,-500px,0);
+        transform: translate3d(0,-500px,0);
+
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+
+}

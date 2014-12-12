@@ -1,0 +1,709 @@
+@import "base";
+@import "animations";
+
+.fi-ct {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: @fi-color;
+
+    &.fi-show-next {
+
+        & .fi-controls {
+
+            & .fi-numbers {
+
+                & .fi-number-current {
+                    .base-animation-construct(animMoveUp 0.4s both);
+
+                }
+                & .fi-number-new {
+                    .base-animation-construct(animMoveUpFromDown 0.4s both);
+                }
+            }
+
+        }
+        & .fi-inner-ct {
+
+            & .fi-field-list {
+
+                & > li {
+                    &.fi-show {
+                        .base-animation-construct(animShowNext 0.5s cubic-bezier(0.7,0,0.3,1) both 0.05s);
+                    }
+                    &.fi-hide {
+                        visibility: visible;
+                        .base-animation-construct(animHideNext 0.5s cubic-bezier(0.7,0,0.3,1) forwards);
+                    }
+                }
+            }
+        }
+
+    }
+    &.fi-show-prev {
+
+        & .fi-controls {
+
+            & .fi-numbers {
+
+                & .fi-number-current {
+                    .base-animation-construct(animMoveDown 0.4s both);
+                }
+                & .fi-number-new {
+                    .base-animation-construct(animMoveDownFromUp 0.4s both);
+                }
+            }
+
+        }
+        & .fi-inner-ct {
+
+            & .fi-field-list {
+
+                & > li {
+                    &.fi-show {
+                        .base-animation-construct(animShowPrev 0.5s cubic-bezier(0.7,0,0.3,1) both 0.05s);
+                    }
+                    &.fi-hide {
+                        visibility: visible;
+                        .base-animation-construct(animHidePrev 0.5s cubic-bezier(0.7,0,0.3,1) forwards);
+                    }
+                }
+            }
+        }
+
+    }
+    & .fi-title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin: 0;
+        padding: 40px;
+        width: 100%;
+        // text-align:center;
+
+        & h1 {
+            margin: 0;
+        }
+
+        & .fi-header-actions{
+            & a{
+                padding: 0 0.25em;
+                display: inline-block;
+                text-decoration: none;
+                font-size: 1.3em;
+                outline: none;
+                color: @fi-header-action-font-color;
+
+                &:hover{
+                    color: @fi-header-action-hover-font-color;
+                }
+
+                & span{
+                    display: none;
+                    position: absolute;
+                    font-size: 0.85em;
+                    padding: 0.5em 0 0 0.25em;
+                    font-weight: 700;
+                }
+
+                &:hover{
+                    & span{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    & .fi-message-success,
+    & .fi-message-error {
+        max-width: @fi-inner-ct-width;
+        position: absolute;
+        bottom: 75%;
+        left: 50%;
+        z-index: 800;
+        max-width: 960px;
+        width: 70%;
+        color: @fi-error-color;
+        font-weight: 700;
+        font-size: 1em;
+        opacity: 0;
+        -webkit-transform: translate3d(-50%,-5px,0);
+        -moz-transform: translate3d(-50%,-5px,0);
+        -ms-transform: translate3d(-50%,-5px,0);
+        -o-transform: translate3d(-50%,-5px,0);
+        transform: translate3d(-50%,-5px,0);
+
+        &.fi-show {
+            opacity: 1;
+            -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+            -moz-transition: -moz-transform 0.3s, opacity 0.3s;
+            -ms-transition: -ms-transform 0.3s, opacity 0.3s;
+            -o-transition: -o-transform 0.3s, opacity 0.3s;
+            transition: transform 0.3s, opacity 0.3s;
+            -webkit-transform: translate3d(-50%,0,0);
+            -moz-transform: translate3d(-50%,0,0);
+            -ms-transform: translate3d(-50%,0,0);
+            -o-transform: translate3d(-50%,0,0);
+            transform: translate3d(-50%,0,0);
+        }
+
+    }
+    & .fi-message-success{
+        color: @fi-success-color;
+    }
+    & button {
+        border: none;
+        // background: none;
+    }
+    & button[disabled] {
+        opacity: 0.3;
+        pointer-events: none;
+
+    }
+    & input:focus,
+    & button:focus {
+        outline: none;
+    }
+    & .fi-controls {
+        & .fi-nav-dots {
+            position: absolute;
+            top: 50%;
+            right: 60px;
+            left: auto;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+
+            & button {
+                position: relative;
+                display: block;
+                padding: 0;
+                margin: 16px 0;
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                background: transparent;
+                -webkit-transition: -webkit-transform 0.3s ease, opacity 0.3s ease;
+                -moz-transition: -moz-transform 0.3s ease, opacity 0.3s ease;
+                -ms-transition: -ms-transform 0.3s ease, opacity 0.3s ease;
+                -o-transition: -o-transform 0.3s ease, opacity 0.3s ease;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+
+                &::before,
+                &::after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background-color: @fi-color-alpha-50;
+                    content: '';
+                    text-indent: 0;
+                    -webkit-backface-visibility: hidden;
+                    -moz-backface-visibility: hidden;
+                    -ms-backface-visibility: hidden;
+                    -o-backface-visibility: hidden;
+                    backface-visibility: hidden;
+
+                }
+                &::after {
+                    background-color: @fi-color-alpha-40;
+                    -webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    -moz-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    -ms-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    -o-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    transform: perspective(1000px) rotate3d(0,1,0,180deg);
+
+                }
+                &:hover::before {
+                    // background: #fffed8;
+                    background: @fi-navdot-current;
+                }
+                &.fi-dot-current {
+                    -webkit-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    -moz-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    -ms-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    -o-transform: perspective(1000px) rotate3d(0,1,0,180deg);
+                    transform: perspective(1000px) rotate3d(0,1,0,180deg);
+
+                    &::before {
+                        background: @fi-navdot-current;
+                        border:1px solid @fi-navdot-current-border;
+                    }
+                }
+            }
+
+        }
+        & .fi-progress {
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0.5em;
+            background: @fi-progress-color;
+            -webkit-transition: width 0.3s ease-in-out;
+            -moz-transition: width 0.3s ease-in-out;
+            -ms-transition: width 0.3s ease-in-out;
+            -o-transition: width 0.3s ease-in-out;
+            transition: width 0.3s ease-in-out;
+
+        }
+        & .fi-numbers {
+            position: absolute;
+            top: 0;
+            right: 0;
+            overflow: hidden;
+            color: @fi-color-alpha-40;
+            margin: 40px;
+            width: 2em;
+            font-weight: 700;
+            font-size: 2em;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            cursor: default;
+
+            &.double-digits{
+                width: 2.75em;
+            }
+
+            &:after {
+                position: absolute;
+                width: 100%;
+                text-align: center;
+                content: '/';
+                font-weight: 300;
+                opacity: 0.4;
+                left: 0;
+
+            }
+            & span {
+                float: right;
+                width: 40%;
+                text-align: center;
+
+            }
+            & .fi-number-current {
+                float: left;
+
+            }
+            & .fi-number-new {
+                position: absolute;
+                left: 0;
+                -webkit-transform: translateY(100%);
+                -moz-transform: translateY(100%);
+                -ms-transform: translateY(100%);
+                -o-transform: translateY(100%);
+                transform: translateY(100%);
+            }
+
+        }
+        & button {
+            &.fi-next,
+            &.fi-back,
+            &.fi-submit,
+            &.fi-continue {
+                padding: 0.6em 1.5em;
+                border: 3px solid @fi-subtext-border-color;
+                border-radius: 40px;
+                font-weight: 700;
+                color: @fi-color-alpha-40;
+                background: none;
+            }
+            &.fi-next,
+            &.fi-back,
+            &.fi-continue {
+                position: fixed;
+                right: 0;
+                bottom: 0;
+                margin: 0 40px 60px 0;
+                font-size: 1.25em;
+                z-index: 50;
+
+                &::after {
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    width: 100%;
+                    line-height: 3;
+                    text-align: center;
+                    background: transparent;
+                    color: @fi-color-alpha-30;
+                    content: attr(data-subtext);
+                    font-size: 0.65em;
+                    pointer-events: none;
+                }
+
+            }
+            &.fi-submit:hover,
+            &.fi-submit:focus,
+            &.fi-continue:hover,
+            &.fi-back:hover,
+            &.fi-next:hover {
+                background: @fi-hover-background;
+                color: @fi-hover-text;
+            }
+        }
+
+    }
+    & .fi-inner-ct {
+        position: relative;
+        text-align: left;
+        font-size: 2.5em;
+        top: 32%;
+        margin: 0 auto;
+        width: @fi-inner-ct-width;
+        // width: @fi-inner-ct-max-width;
+        max-width: @fi-inner-ct-width;
+
+        &.fi-show {
+            .base-animation-construct(animFadeIn 0.5s);
+
+            & .fi-field-list {
+                .base-animation-construct(animMove 0.5s);
+            }
+
+        }
+        & .fi-submit {
+            // Won't always have one, but just in case.
+            display: none!important;
+
+        }
+        & .fi-field-list {
+
+            position: relative;
+            margin: 0 auto;
+            padding: 0;
+            top: 0;
+            list-style: none;
+
+            & > li {
+                visibility: hidden;
+                position: relative;
+                z-index: 1;
+                margin: 0;
+                padding: 0;
+                border: none;
+                position: absolute;
+                width: 100%;
+
+                &.long-content{
+                    padding-right:100px;
+                }
+
+                &.fi-current-field {
+                    visibility: visible;
+
+                }
+                &.fi-show,
+                &.fi-hide {
+                    pointer-events: none;
+
+                }
+                // &:hover{
+                // 	z-index: 999;
+                // }
+                & label {
+                    position: relative;
+
+                    &.fi-field-label {
+                        display: inline-block;
+                        padding: 0 5px 1em 0;
+                        font-weight: 700;
+                        pointer-events: none;
+
+                    }
+                    &[data-info] {
+                        &::after {
+                            position: relative;
+                            display: inline-block;
+                            margin-left: 10px;
+                            width: 24px;
+                            height: 24px;
+                            border: 2px solid @fi-color-alpha-40;
+                            color: @fi-color-alpha-40;
+                            border-radius: 50%;
+                            content: 'i';
+                            vertical-align: top;
+                            text-align: center;
+                            font-weight: 700;
+                            font-style: italic;
+                            font-size: 14px;
+                            font-family: Georgia, serif;
+                            line-height: 20px;
+                            cursor: pointer;
+                            pointer-events: auto;
+
+                        }
+                        &::before {
+                            position: absolute;
+                            bottom: 100%;
+                            left: 0;
+                            padding: 0 0 10px;
+                            min-width: 320px;
+                            content: attr(data-info);
+                            font-size: 0.4em;
+                            color: @fi-color-alpha-40;
+                            opacity: 0;
+                            -webkit-transition: opacity 0.3s, -webkit-transform 0.3s;
+                            -moz-transition: opacity 0.3s, -moz-transform 0.3s;
+                            -ms-transition: opacity 0.3s, -ms-transform 0.3s;
+                            -o-transition: opacity 0.3s, -o-transform 0.3s;
+                            transition: opacity 0.3s, transform 0.3s;
+                            -webkit-transform: translate3d(0,-5px,0);
+                            -moz-transform: translate3d(0,-5px,0);
+                            -ms-transform: translate3d(0,-5px,0);
+                            -o-transform: translate3d(0,-5px,0);
+                            transform: translate3d(0,-5px,0);
+                            pointer-events: none;
+
+                        }
+                        &:hover::before {
+                            opacity: 1;
+                            -webkit-transform: translate3d(0,0,0);
+                            -moz-transform: translate3d(0,0,0);
+                            -ms-transform: translate3d(0,0,0);
+                            -o-transform: translate3d(0,0,0);
+                            transform: translate3d(0,0,0);
+                        }
+                    }
+
+                }
+                & label:hover ~ .fi-info,
+                & .fi-info:hover {
+                    opacity: 1;
+                    -webkit-transform: translateY(0);
+                    -moz-transform: translateY(0);
+                    -ms-transform: translateY(0);
+                    -o-transform: translateY(0);
+                    transform: translateY(0);
+                    pointer-events: auto;
+
+                }
+                & input {
+                    display: block;
+                    margin: 0;
+                    padding: 0 0 0.15em;
+                    width: 100%;
+                    border: none;
+                    border-bottom: 2px solid @fi-color-alpha-20;
+                    background-color: transparent;
+                    color: @fi-focus-text;
+                    text-overflow: ellipsis;
+                    font-weight: bold;
+                    font-size: 1.5em;
+                    border-radius: 0;
+
+                    &:invalid {
+                        box-shadow: none;
+                        /* removes red shadow in FF*/
+
+                    }
+                    &:focus {
+                        outline: none;
+                        background-color: @fi-input-background;
+                        /* Fixes chrome bug with placeholder */
+                        &::-webkit-input-placeholder {
+                            color: transparent;
+                        }
+
+                    }
+                    &[type="radio"]:focus + label::after,
+                    &[type="radio"]:checked + label::after {
+                        opacity: 1;
+
+                    }
+                    &.fi-mark {
+                        padding-left: 1em;
+                        background-image: url("../images/dollar.svg");
+                        background-position: 0 0.15em;
+                        background-size: auto 75%;
+                        background-repeat: no-repeat;
+
+                        &[required] {
+                            background-image: url(../images/dollar.svg), url("../images/abacusstar.svg");
+                            background-position: 0 0.15em, top right;
+                            background-size: auto 75%, 18px;
+                            background-repeat: no-repeat;
+                        }
+
+                    }
+                    &::-webkit-input-placeholder,
+                    &::-moz-input-placeholder,
+                    &::-ms-input-placeholder,
+                    &::-o-input-placeholder {
+                        color: @fi-color-alpha-10;
+                    }
+
+                }
+                & textarea {
+                    padding: 0.25em;
+                    width: 100%;
+                    height: 200px;
+                    border: 2px solid @fi-color-alpha-20;
+                    background-color: transparent;
+                    color: @fi-focus-text;
+                    font-weight: 700;
+                    font-size: 0.85em;
+                    resize: none;
+
+                    &:focus {
+                        outline: none;
+                        background-color: @fi-input-background;
+                    }
+                    &::-webkit-input-placeholder,
+                    &::-moz-input-placeholder,
+                    &::-ms-input-placeholder,
+                    &::-o-input-placeholder {
+                        color: @fi-color-alpha-10;
+                    }
+                }
+
+            }
+            & [required] {
+                background-image: url("../images/abacusstar.svg");
+                background-position: top right;
+                background-size: 18px;
+                background-repeat: no-repeat;
+            }
+        }
+
+    }
+    /* Remove IE clear cross */
+    & input[type=text]::-ms-clear {
+        display: none;
+
+    }
+    & .fi-nav-dots,
+    & .fi-progress,
+    & .fi-numbers,
+    & .fi-continue,
+    & .fi-next,
+    & .fi-back,
+    & .fi-message-error,
+    & .fi-message-success,
+    & .fi-message-final {
+        visibility: hidden;
+
+    }
+    & .fi-show {
+        visibility: visible !important;
+    }
+
+    & .back-icon
+    {
+        color:@fi-color;
+
+        &::before
+        {
+            content: '\2B05';
+        }
+    }
+
+}
+@media screen and (max-width: 52.5em) {
+    body {
+        min-height: 500px;
+    }
+    .fi-ct {
+        font-size: 70%;
+
+        & .fi-title {
+            padding: 20px;
+
+        }
+        & .fi-inner-ct {
+            top: 6em;
+            right: 2em;
+            left: 0;
+            padding: 0 3.75em 0 1em;
+            width: auto;
+            font-size: 2em;
+
+            & .fi-field-list {
+
+                & > li {
+
+                    &.long-content{
+                        padding-right:0;
+                    }
+                }
+            }
+        }
+        & .fi-controls {
+
+            & .fi-numbers {
+                margin: 20px;
+
+            }
+            & .fi-nav-dots {
+                right: 25px;
+
+            }
+            & button {
+                &.fi-back,
+                &.fi-next,
+                &.fi-continue {
+                    right: 20px;
+                    bottom: 20px;
+                    margin: 0;
+                    padding: 50px 0 0 50px;
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    font-size: 2em;
+
+                    &::before {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        content: '\27A1';
+                        text-align: center;
+                        font-size: 1em;
+                        line-height: 50px;
+
+                    }
+                    &::after {
+                        content: '';
+                    }
+
+                }
+                &.fi-back
+                {
+                    &::before{
+                        content: '\2B05';
+                    }
+                }
+                &.fi-submit {
+                    width: 100%;
+                    font-size: 1.25em;
+                }
+            }
+
+        }
+        & .fi-message-success,
+        & .fi-message-error {
+            bottom: 1.75em;
+            left: 0;
+            padding: 0 90px 0 2em;
+            width: 100%;
+            font-size: 1.5em;
+            -webkit-transform: translate3d(0,-5px,0);
+            -moz-transform: translate3d(0,-5px,0);
+            -ms-transform: translate3d(0,-5px,0);
+            -o-transform: translate3d(0,-5px,0);
+            transform: translate3d(0,-5px,0);
+
+            &.fi-show {
+                -webkit-transform: translate3d(0,0,0);
+                -moz-transform: translate3d(0,0,0);
+                -ms-transform: translate3d(0,0,0);
+                -o-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+            }
+        }
+    }
+
+}
