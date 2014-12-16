@@ -324,6 +324,8 @@ define "fullscreen-interface", ["common"], (common) ->
 
 					common.addClasses self.nextField, [ 'fi-current-field', 'fi-show']
 
+					self._focusOnNextFieldInput()
+
 					if self.nextField.hasAttribute 'data-hide-continue'
 						common.removeClass self.ctrlContinue, 'fi-show'
 					else
@@ -355,9 +357,6 @@ define "fullscreen-interface", ["common"], (common) ->
 						innerself.currentIdx = innerself.nextIdx
 						innerself.currentField = innerself.nextField
 						innerself.currentNavDot = innerself.nextNavDot
-
-						innerself._focusOnCurrentFieldInput()
-
 						innerself.isBusy = innerself.isAnimating = false
 						true
 
@@ -376,10 +375,17 @@ define "fullscreen-interface", ["common"], (common) ->
 			true
 
 		_focusOnCurrentFieldInput: (el) ->
-			# console.log this.currentField
+			this._focusOnFieldInput this.currentField, el
+			true
+
+		_focusOnNextFieldInput: (el) ->
+			this._focusOnFieldInput this.nextField, el
+			true
+
+		_focusOnFieldInput: (fld, el) ->
 			if el == undefined
 				#explicitly selecting type to ensure a hidden input isn't selected
-				el = this.currentField.querySelector('input[type="text"]') || this.currentField.querySelector('input[type="password"]') || this.currentField.querySelector('input[type="radio"]') || this.currentField.querySelector('input[type="checkbox"]') || this.currentField.querySelector('select') || this.currentField.querySelector('textarea')
+				el = fld.querySelector('input[type="text"]') || fld.querySelector('input[type="password"]') || fld.querySelector('input[type="radio"]') || fld.querySelector('input[type="checkbox"]') || fld.querySelector('select') || fld.querySelector('textarea')
 
 			# if not element to focus in on
 			if not el
