@@ -38,6 +38,10 @@ For those dead set against coffeescript, it's not about coffeescript being the e
 
 Create an issue or pull request, I'm pretty busy these days and cannot guarantee a prompt response, but I will get to it.
 
+## Browser Support
+This will only support newer HTML5 compliant browsers with javascript enabled and I have no plans to support older browsers such as ie8 etc. These things have been holding us back for years and don't intend to keep perpetuating the problem.
+
 ## Notes
 
 My less is not perfect, nor is my coffeescript if you can write it better or wish to contribute please don't hesitate as I'm always looking to improve and learn new techniques.
+
