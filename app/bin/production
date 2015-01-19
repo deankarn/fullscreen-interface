@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+
+echo "Script Running From $DIR"
+
+cd $DIR/.. && NODE_ENV=production gulp
