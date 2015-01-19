@@ -36,12 +36,14 @@
     },
     "devDependencies": {
         "gulp": "latest",
+        "gulp-coffee": "latest",
         "gulp-concat": "latest",
         "gulp-less": "latest",
-        "gulp-coffee" : "latest",
+        "gulp-livereload": "latest",
         "gulp-minify-css": "latest",
-        "gulp-nodemon": "latest",
+        "gulp-mocha": "latest",
         "gulp-sourcemaps": "latest",
+        "gulp-supervisor": "latest",
         "mocha": "latest",
         "should": "latest",
         "supertest": "latest"

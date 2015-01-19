@@ -1,6 +1,6 @@
 #!/bin/bash
 
 npm install -g gulp
-npm install -g nodemon
+npm install -g supervisor
 npm install
 gulp install

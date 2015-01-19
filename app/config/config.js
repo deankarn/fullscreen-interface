@@ -10,7 +10,7 @@ var base = {
         root: path.normalize(__dirname + '/../..'),
         env: env,
         isProduction: production,
-        proxy: true
+        proxy: false
     }
 };
 
