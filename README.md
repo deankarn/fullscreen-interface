@@ -19,7 +19,7 @@ Although the look and feel is very similar, the code was converted to coffeescri
 1. nodejs ( maybe Io.js in the future ) >= v0.11.14 is required to run this. I recommend using [n](https://github.com/tj/n) to install as it doesn't get any easier.
 2. Clone or Fork this repository.
 3. Run the following command from within the cloned working directory "./app/bin/init" it will install all needed dependancies.
-4. Run the command "gulp dev" <- there is no test as of yet haven't had time for unit tests yet.
+4. Run the command "./app/bin/dev", "./app/bin/test" or "./app/bin/production" for different modes <- there is no testing implemented as of yet haven't had time for unit tests yet.
 
 ## Examples?
 
@@ -44,4 +44,3 @@ This will only support newer HTML5 compliant browsers with javascript enabled an
 ## Notes
 
 My less is not perfect, nor is my coffeescript if you can write it better or wish to contribute please don't hesitate as I'm always looking to improve and learn new techniques.
-
