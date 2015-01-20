@@ -5,8 +5,10 @@ define("fullscreen-interface", ["common"], function(common) {
   		data-hide-continue - hides the continue button on this field, one of the controls on the screen triggers the continue,
   							 forcing an option to be selected and most likely used with data-input-trigger.
   		data-input-trigger - it tries to subscribe any elements such as a radio button group to fire the continue upon selection.
-  		data-dependant - indicates that this field is dependant upon a previous field in the list, affects whether the navdot are disabled or not.
+  		data-dependant     - indicates that this field is dependant upon a previous field in the list, affects whether the navdot are disabled or not.
   		data-validation-id - this is the id that the validation logic will try and match your validation rule.
+  		data-skip          - this will indicate to skip to the next field as an option has negated the need for this field. Added from external code.
+  		data-no-trigger    - this will disallow triggering upon ENTER to the next field.
    */
   var FullscreenInterface;
   return FullscreenInterface = (function() {
@@ -36,6 +38,7 @@ define("fullscreen-interface", ["common"], function(common) {
     };
 
     FullscreenInterface.prototype.options = {
+      triggerNextOnEnter: true,
       ctrlNavProgress: true,
       ctrlNavDots: true,
       ctrlNavNumbers: true,
@@ -214,18 +217,20 @@ define("fullscreen-interface", ["common"], function(common) {
         }
         return true;
       });
-      document.addEventListener('keydown', function(e) {
-        var keyCode;
-        if (!self.isLastStep && !(e.target.tagName.toLowerCase() === 'textarea')) {
-          keyCode = e.keyCode || e.which;
-          if (keyCode === 13) {
-            e.preventDefault();
-            self._nextField();
-            false;
+      if (this.options.triggerNextOnEnter) {
+        document.addEventListener('keydown', function(e) {
+          var keyCode;
+          if (!self.isLastStep && !(e.target.tagName.toLowerCase() === 'textarea') && !self.currentField.hasAttribute('data-no-trigger')) {
+            keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+              e.preventDefault();
+              self._nextField();
+              false;
+            }
           }
-        }
-        return true;
-      });
+          return true;
+        });
+      }
       return true;
     };
 
@@ -264,7 +269,7 @@ define("fullscreen-interface", ["common"], function(common) {
       this._clearSuccess();
       self = this;
       this._validate(function(success) {
-        var innerself, onEndAnimationFn;
+        var fld, i, innerself, newIdx, onEndAnimationFn, _i, _j, _ref, _ref1, _ref2;
         if (!success) {
           self.isBusy = self.isAnimating = false;
           return;
@@ -313,6 +318,33 @@ define("fullscreen-interface", ["common"], function(common) {
           common.removeClass(self.currentField, 'fi-current-field');
           common.addClass(self.currentField, 'fi-hide');
           self.nextField = self.fields[self.nextIdx];
+          if (self.nextField.hasAttribute('data-skip')) {
+            newIdx = 0;
+            if (self.isMovingBack) {
+              for (i = _i = _ref = self.nextIdx; _i > -1; i = _i += -1) {
+                fld = self.fields[i];
+                if (fld.hasAttribute('data-skip')) {
+                  continue;
+                } else {
+                  newIdx = i;
+                  break;
+                }
+              }
+            } else {
+              newIdx = self.fieldsCount - 1;
+              for (i = _j = _ref1 = self.nextIdx, _ref2 = self.fieldsCount; _j < _ref2; i = _j += 1) {
+                fld = self.fields[i];
+                if (fld.hasAttribute('data-skip')) {
+                  continue;
+                } else {
+                  newIdx = i;
+                  break;
+                }
+              }
+            }
+            self.nextIdx = newIdx;
+            self.nextField = self.fields[self.nextIdx];
+          }
           self.nextNavDot = self.ctrlNavDots[self.nextIdx];
           self._updateNav();
           self._updateFieldNumber();

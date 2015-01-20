@@ -72,6 +72,7 @@ define("main", ["fullscreen-interface"], function(fi) {
       "fname": _validateFirstName
     };
     form = new fi(ct, {
+      triggerNextOnEnter: false,
       onComplete: _completeForm,
       validators: rules
     });
