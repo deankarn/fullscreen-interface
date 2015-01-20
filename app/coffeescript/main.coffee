@@ -81,6 +81,7 @@ define "main", ["fullscreen-interface"], (fi) ->
 
 		form = new fi ct,
 		{
+			triggerNextOnEnter : false,
 			onComplete: _completeForm,
 			validators: rules
 		}
