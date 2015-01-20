@@ -5,8 +5,9 @@ define "fullscreen-interface", ["common"], (common) ->
 		data-hide-continue - hides the continue button on this field, one of the controls on the screen triggers the continue,
 							 forcing an option to be selected and most likely used with data-input-trigger.
 		data-input-trigger - it tries to subscribe any elements such as a radio button group to fire the continue upon selection.
-		data-dependant - indicates that this field is dependant upon a previous field in the list, affects whether the navdot are disabled or not.
+		data-dependant     - indicates that this field is dependant upon a previous field in the list, affects whether the navdot are disabled or not.
 		data-validation-id - this is the id that the validation logic will try and match your validation rule.
+		data-skip          - this will indicate to skip to the next field as an option has negated the need for this field. Added from external code.
 	###
 	class FullscreenInterface
 
@@ -315,7 +316,41 @@ define "fullscreen-interface", ["common"], (common) ->
 					common.removeClass self.currentField, 'fi-current-field'
 					common.addClass self.currentField, 'fi-hide'
 
+					# Check to see if the next field has data-skip attribute
+					# if so keep trying to find the next, or previous, field to skip to
+
 					self.nextField = self.fields[self.nextIdx]
+
+					if self.nextField.hasAttribute 'data-skip'
+						newIdx = 0;
+
+						if self.isMovingBack
+
+							for i in [self.nextIdx...-1] by -1
+
+								fld = self.fields[i]
+
+								if fld.hasAttribute 'data-skip'
+									continue
+								else
+									newIdx = i
+									break
+						else
+							newIdx = self.fieldsCount - 1;
+
+							for i in [self.nextIdx...self.fieldsCount] by 1
+
+								fld = self.fields[i]
+
+								if fld.hasAttribute 'data-skip'
+									continue
+								else
+									newIdx = i
+									break
+
+						self.nextIdx = newIdx;
+						self.nextField = self.fields[self.nextIdx]
+
 					self.nextNavDot = self.ctrlNavDots[self.nextIdx]
 
 					self._updateNav()
@@ -338,7 +373,7 @@ define "fullscreen-interface", ["common"], (common) ->
 						common.addClass self.el, 'fi-show-next'
 
 					onEndAnimationFn = (e)->
-						# console.log 'end animation'
+						
 						if support.animations
 							this.removeEventListener animEndEventName, onEndAnimationFn
 
