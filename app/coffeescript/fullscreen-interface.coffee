@@ -8,6 +8,7 @@ define "fullscreen-interface", ["common"], (common) ->
 		data-dependant     - indicates that this field is dependant upon a previous field in the list, affects whether the navdot are disabled or not.
 		data-validation-id - this is the id that the validation logic will try and match your validation rule.
 		data-skip          - this will indicate to skip to the next field as an option has negated the need for this field. Added from external code.
+		data-no-trigger    - this will disallow triggering upon ENTER to the next field.
 	###
 	class FullscreenInterface
 
@@ -26,6 +27,8 @@ define "fullscreen-interface", ["common"], (common) ->
 			a
 
 		options:
+			# trigger navigation on pressing enter
+			triggerNextOnEnter : true,
 			# show progress bar
 			ctrlNavProgress : true,
 			# show navigation dots
@@ -212,16 +215,16 @@ define "fullscreen-interface", ["common"], (common) ->
 							true
 				true
 
-			# keyboard navigation events - jump to next field when pressing enter
-			document.addEventListener 'keydown', (e) ->
-
-				if not self.isLastStep and not (e.target.tagName.toLowerCase() == 'textarea')
-					keyCode = e.keyCode || e.which
-					if keyCode == 13
-						e.preventDefault()
-						self._nextField()
-						false
-				true
+			if this.options.triggerNextOnEnter
+				# keyboard navigation events - jump to next field when pressing enter
+				document.addEventListener 'keydown', (e) ->
+					if not self.isLastStep and not (e.target.tagName.toLowerCase() == 'textarea') and not self.currentField.hasAttribute 'data-no-trigger'
+						keyCode = e.keyCode || e.which
+						if keyCode == 13
+							e.preventDefault()
+							self._nextField()
+							false
+					true
 
 			true
 
@@ -373,7 +376,7 @@ define "fullscreen-interface", ["common"], (common) ->
 						common.addClass self.el, 'fi-show-next'
 
 					onEndAnimationFn = (e)->
-						
+
 						if support.animations
 							this.removeEventListener animEndEventName, onEndAnimationFn
 
